@@ -17,8 +17,7 @@ class OrderList(generics.ListAPIView):
     queryset = Order.objects
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
-
+        return self.queryset.all()
 
 class OrderDetail(generics.RetrieveAPIView):
     model = Order

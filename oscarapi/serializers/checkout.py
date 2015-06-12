@@ -84,6 +84,8 @@ class OrderSerializer(OscarHyperlinkedModelSerializer):
     billing_address = InlineBillingAddressSerializer(
         many=False, required=False)
     payment_url = serializers.SerializerMethodField()
+    
+    store_id = serializers.PrimaryKeyRelatedField(read_only=True)
 
     def get_payment_url(self, obj):
         try:
@@ -102,7 +104,7 @@ class OrderSerializer(OscarHyperlinkedModelSerializer):
             'user', 'billing_address', 'currency', 'total_incl_tax',
             'total_excl_tax', 'shipping_incl_tax', 'shipping_excl_tax',
             'shipping_address', 'shipping_method', 'shipping_code', 'status',
-            'guest_email', 'date_placed', 'payment_url'))
+            'guest_email', 'date_placed', 'payment_url', 'store_id',))
 
 
 class CheckoutSerializer(serializers.Serializer, OrderPlacementMixin):
